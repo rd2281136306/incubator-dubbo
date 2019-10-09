@@ -154,7 +154,7 @@ public interface EtcdClient {
      * @throws TimeoutException if the wait timed out
      * @return lease id from etcd
      */
-    public long createLease(long ttl, long timeout, TimeUnit unit)
+    long createLease(long ttl, long timeout, TimeUnit unit)
             throws InterruptedException, ExecutionException, TimeoutException;
 
     /**
@@ -163,5 +163,21 @@ public interface EtcdClient {
      * @param lease to be removed lease
      */
     void revokeLease(long lease);
+
+
+    /**
+     * Get the value of the specified key.
+     * @param key the specified key
+     * @return null if the value is not found
+     */
+    String getKVValue(String key);
+
+    /**
+     * Put the key value pair to etcd
+     * @param key the specified key
+     * @param value the paired value
+     * @return true if put success
+     */
+    boolean put(String key, String value);
 
 }
